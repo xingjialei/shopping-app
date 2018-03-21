@@ -1,0 +1,77 @@
+.ui-icon-myicon:after {  
+   background-image: url("../images/nav_1.png");
+   background-size: 18px 18px;  
+}
+.ui-icon-myicon1:after{
+	background-image: url("../images/nav_2.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon2:after{
+	background-image: url("../images/nav_3.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon3:after{
+	background-image: url("../images/nav_4.png");
+	background-size: 18px 18px;
+}
+.ui-icon{
+	width: 18px;
+	height: 18px;
+}
+ui-icon-all{
+	background-color:linear-gradient(#fbcb29,#ffb80e);
+}
+#fieldcontain img{
+	width: 5rem;
+	height: 5rem;
+}
+#fieldcontain{
+	width: 100%;
+}
+.ui-field-contain{
+	border-bottom-style: none;
+}
+#fieldcontain .big{
+	height: 5rem;
+	margin-left: -20rem;
+}
+#listview{
+	width: 100%;
+}
+#listview li{
+	width: 100%;
+	padding-left: 2rem;
+	padding-bottom: 0.5rem;
+	margin-top: 0.5rem;
+	border-bottom: 1px solid #ffd401;
+}
+#listview .image{
+	float: left;
+}
+#listview .text{
+	width: 55%;
+	float: left;
+	margin-left: 2rem; 
+}
+.delete{
+	float: left;
+	margin-right: 1rem;
+}
+#listview .delete img{
+	width: 1.5rem;
+	height: 1.5rem;
+}
+.num{
+	border: 1px solid gray;
+}
+#first{
+	height: 2.5rem;
+}
+#popups{
+	width: 50%;
+	border: 1px solid black;
+	position: absolute;
+	top: 50%;
+	left: 25%;
+	display: none;
+}

@@ -1,0 +1,83 @@
+.ui-icon-myicon:after {  
+   background-image: url("../images/nav_1.png");
+   background-size: 18px 18px;  
+}
+.ui-icon-myicon1:after{
+	background-image: url("../images/nav_2.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon2:after{
+	background-image: url("../images/nav_3.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon3:after{
+	background-image: url("../images/nav_4.png");
+	background-size: 18px 18px;
+}
+.ui-icon{
+	width: 18px;
+	height: 18px;
+}
+ui-icon-all{
+	background-color:linear-gradient(#fbcb29,#ffb80e);
+}
+#header{
+	background-color: yellow;
+	height: 9rem;
+}
+#header_header{
+	line-height: 3rem;
+}
+#header_content img{
+	width: 5rem;
+	border-radius: 50%;
+	margin-left: 1rem;
+	margin-top: 0.5rem;
+	float: left;
+}
+#header_content a{
+	line-height: 5rem;
+	text-decoration: none;
+	color: black;
+}
+#header_content h1{
+	margin-left: 1rem;
+	float: left;
+}
+#content_content{
+	margin-top: 1rem;
+}
+#content_footer{
+	margin-top: 1rem;
+}
+#content_footer #logistics_time{
+	width: 25%;
+	float: left;
+}
+#content_footer #logistics_site{
+	width: 75%;
+	float: left;
+}
+
+#page2 #exit{
+	background-color: orange;
+	color: white;
+}
+#page2 .ui{
+	margin-top: 2rem;
+}
+#page2 #speciallist img{
+	width: 5rem;
+	border-radius: 50%;
+	margin-left: 1rem;
+	margin-top: 1.1rem;
+	float: left;
+}
+#page2 #speciallist h1{
+	padding-left: 2rem;
+}
+#page2 #speciallist a{
+	text-decoration: none;
+	line-height: 7rem;
+	color: black;
+}

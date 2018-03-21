@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>register</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/register.css"/>
+</head>
+<body>
+	<div data-role="page" id="page">
+		<div data-role="header">
+			<a href="login.html" rel="external" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+			<a href="#" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+		</div>
+		<div data-role="content">
+			<img src="../images/logo.jpg" style="border-radius: 20%;" />
+			<div data-role="fieldcontain">
+				<input type="text" placeholder="请输入用户名" id="user"></input>
+				<input type="password" placeholder="请输入密码" id="ps1"></input>
+				<input type="password" placeholder="请再次输入密码" id="ps2"></input>
+				<input type="button" value="注册" id="btn"></input>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var install = localStorage.getItem('install');
+	console.log(install);
+	if(install){
+	/*注册用户*/
+		$('#btn').click(function(){
+			if($('#ps1').val() != $('#ps2').val()){
+				alert('密码输入不一致');
+			}
+			$.ajax({
+				type:'get',
+				url:'http://datainfo.duapp.com/shopdata/userinfo.php',
+				dataType:'json',
+				data:{
+					status:'register',
+					userID:$('#user').val(),
+					password:$('#ps1').val()
+				},
+				success:function(data){
+					if(data == 0){
+						alert('用户名重名');
+					}
+					else if(data == 1){
+						window.location.href="login.html";
+					}
+					else if(data == 2){
+						alert('error');
+					}
+				}
+			})
+		})
+	}
+	else window.location.href = 'animation.html';
+</script>
+</html>

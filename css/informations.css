@@ -1,0 +1,75 @@
+.ui-icon-myicon:after {  
+   background-image: url("../images/nav_1.png");
+   background-size: 18px 18px;  
+}
+.ui-icon-myicon1:after{
+	background-image: url("../images/nav_2.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon2:after{
+	background-image: url("../images/nav_3.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon3:after{
+	background-image: url("../images/nav_4.png");
+	background-size: 18px 18px;
+}
+.ui-icon{
+	width: 18px;
+	height: 18px;
+}
+ui-icon-all{
+	background-color:linear-gradient(#fbcb29,#ffb80e);
+}
+#header{
+	background:linear-gradient(to right,yellow,#ffdf1b)!important;
+}
+#header img{
+	margin-top: 2px;
+}
+#header h1{
+	line-height: 25px;
+	color: white;
+	font-family: '楷体';
+	font-size: 20px;
+}
+.ui{
+	border-bottom: 1px solid #aaa;
+}
+.ui img{
+	border-radius: 50%;
+	overflow: hidden;
+}
+#special{
+	background: white;
+}
+#panel_ch{
+	line-height: 50px;
+	height: 80px;
+}
+#panel_ch h1{
+	font-size: 25px;
+	font-family: '楷体';
+	margin-top: -70px;
+	margin-left: 70px;
+}
+#head{
+	height: 45px;
+}
+.uo{
+	list-style: none;
+}
+.uo a{
+	text-decoration-style: none;
+}
+#ull{
+	margin-bottom: 20px;
+}
+#ull h1{
+	font-weight: normal;
+}
+#footer a{
+	color: gray;
+	font-weight: normal;
+	text-decoration: none;
+}

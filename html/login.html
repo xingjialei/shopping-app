@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="../jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+</head>
+<body>
+	<div data-role="page" id="page_1">
+		<div data-role="header" data-position="fixed">
+			<a href="#" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+			<a href="#" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+		</div>
+		<div data-role="content" class="content">
+			<img src="../images/logo.jpg" style="border-radius: 20%;" />
+			<a href="#page_2" data-role="button">登录</a>
+			<a href="register.html" rel="external" data-role="button">新用户注册</a>
+		</div>
+		<div data-role="footer" data-position="fixed" style="text-align: center;">
+			<p>支付宝账户快速登录</p>
+		</div>
+	</div>
+	<div data-role="page" id="page_2">
+		<div data-role="header">
+			<a href="#page_1" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+			<a href="#" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+		</div>
+		<div data-role="content">
+			<img src="../images/logo.jpg" style="border-radius: 20%;" />
+			<div data-role="fieldcontain">
+				<input type="text" placeholder="手机号/会员名/邮箱" id="user"></input>
+				<input type="password" placeholder="请输入密码" id="ps_1"></input>
+				<a href="#" data-position="right" style="color: black;margin-left: 40%;">忘记密码</a>
+				<a href="" id="btn" data-role="button">登录</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var install = localStorage.getItem('install');
+	console.log(install);
+	if(install){
+		console.log(localStorage.getItem('login'));
+	/*点击验证用户名和密码*/
+		$('#btn').click(function(){
+			$.ajax({
+				type: 'GET',
+				url: 'http://datainfo.duapp.com/shopdata/userinfo.php',
+				data:{
+					status:'login',
+					userID:$('#user').val(),
+					password:$('#ps_1').val()
+				},
+				success: function(data){
+					if(data == 0){
+						alert('用户名不存在');
+					}
+					else if(data == 2){
+						alert('用户名与密码不符');
+					}
+					else{
+						var login = $('#user').val();
+						localStorage.setItem('login',login);
+						console.log(localStorage.getItem('login'));
+						window.location.href="../index.html";
+					}
+				},
+				error:function(){
+					alert('error');
+				}
+			})
+		})
+	}
+	else window.location.href = 'animation.html';
+</script>
+</html>

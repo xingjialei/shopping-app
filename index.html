@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="swiper/dist/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="swiper/dist/css/swiper.min.css">
+	<script src="js/iscroll.js"></script>
+	<script src="js/navbarscroll.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<script>
+    	$(document).ready(function(){
+    		var mySwiper = new Swiper('.swiper-container',{
+    			direction: 'horizontal',
+    			loop: true,
+    			autoplay: 2000,
+    			pagination: '.swiper-pagination'
+    		});
+    	});
+
+    	$(function(){
+			$('.wrapper').navbarscroll();
+		});
+    </script>
+</head>
+<body>
+	<div data-role="page" id="page1">
+<!--页面头部-->
+		<div data-role="header" style="background:linear-gradient(yellow,#ffdf1b);">
+			<h1 style="height: 2.5rem; margin-top: -0.8rem; width: 75%;margin-left: 1rem;"><input type="search" id="search"/></h1>
+			<a id="submit" class="ui-btn-right" style="margin-top: 0.3rem;">搜索</a>
+		</div>
+			<div class="wrapper" id="wrap">
+				<div class="scroller">
+					<ul id="scroller">
+						<li class="cur" classId="0">热销商品</li>
+						<li classId="1">衬衫</li>
+						<li classId="2">礼服</li>
+						<li classId="3">棉服</li>
+						<li classId="4">短外套</li>
+						<li classId="5">卫衣</li>
+						<li classId="6">T恤</li>
+					</ul>	
+				</div>
+			</div>
+			<div data-role="navbar">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="images/two.jpg">
+						</div>
+						<div class="swiper-slide">
+							<img src="images/one.jpg">
+						</div>
+						<div class="swiper-slide">
+							<img src="images/zero.jpg">
+						</div>
+						<div class="swiper-slide">
+							<img src="images/four.jpg">
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+<!--页面内容-->
+		<div data-role="content" id="content">
+			<div style="width: 100%; background:linear-gradient(180deg,yellow,#ffdf1b);text-align: center; margin-top: 1rem;margin-bottom: 1rem;padding-top: 0.5rem;padding-bottom: 0.2rem;">
+				<h1 style="text-align: center;font-size: 1rem;">猜你喜欢</h1>
+			</div>
+			<ul data-role="listview" id="goodList">
+				
+			</ul>
+		</div>
+<!--页面底部-->
+		<div data-role="footer" data-position="fixed" style="background-color: #ffc607;">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" data-iconpos="top" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon ui-btn-active">首页</a></li>
+					<li><a href="html/informations.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">消息</a></li>
+					<li><a href="html/shopcart2.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">购物车</a></li>
+					<li><a href="html/homepage.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon3" data-iconpos="top">我的主页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	/*判断是否安装*/
+	if(!localStorage.getItem('install')){
+		window.location.href = "html/animation.html";
+	}
+	else{
+		console.log(localStorage.getItem('install'));
+		console.log(localStorage.getItem('login'));
+	/*获得热销商品列表*/
+		$.ajax({
+			type:'get',
+			url:'http://datainfo.duapp.com/shopdata/getGoods.php',
+			dataType:'jsonp',
+			success:function(data){
+				console.log(data);
+				$('#goodList').empty();
+				for(var i = 0 ; i < data.length ; i++){
+					if(i % 2 == 0){
+						$('#goodList').html($('#goodList').html()+`<li goodId=`+data[i].goodsID+`
+							style="margin-left: 0.5rem;">
+							<img src="`+data[i].goodsListImg+`" alt=""/>
+							<p>`+data[i].goodsName.slice(0,5)+`...`+`</p>
+							<li>`);
+					}else{
+						$('#goodList').html($('#goodList').html()+`<li goodId=`+data[i].goodsID+` style="padding-left: 0.5rem;">
+							<img src="`+data[i].goodsListImg+`" alt=""/>
+							<p>`+data[i].goodsName.slice(0,5)+`...`+`</p>
+							<li>`);
+					}
+				}
+				$('#goodList>li').on('click',function(){
+					window.location.href = 'html/goodsInfo.html#'+this.getAttribute('goodId');
+				})
+			}
+		})
+/*点击搜索按钮进行商品搜索*/
+		$('#submit').click(function(){
+			$.ajax({
+				type:'get',
+				url:'http://datainfo.duapp.com/shopdata/selectGoodes.php',
+				dataType:'jsonp',
+				data:{
+					selectText:$('#search').val()
+				},
+				success:function(data){
+					console.log(data);
+					$('#goodList').empty();
+					for(var i = 0 ; i < data.length ; i++){
+						if(i % 2 == 0){
+							$('#goodList').html($('#goodList').html()+`<li goodId=`+data[i].goodsID+`>
+							<img src="`+data[i].goodsListImg+`" alt=""/>
+							<p>`+data[i].goodsName.slice(0,5)+`...`+`</p>
+							<li>`);
+						}else{
+							$('#goodList').html($('#goodList').html()+`<li goodId=`+data[i].goodsID+` style="padding-left: 0.5rem;">
+							<img src="`+data[i].goodsListImg+`" alt=""/>
+							<p>`+data[i].goodsName.slice(0,5)+`...`+`</p>
+							<li>`);
+						}
+					}
+					$('#goodList>li').on('click',function(){
+					window.location.href = 'html/goodsInfo.html#'+this.getAttribute('goodId');
+					})
+				}
+			})
+		})
+/*根据商品分类来获得商品列表*/
+		$('#scroller>li').click(function(){
+			var classId = this.getAttribute('classId');
+			$.ajax({
+				type:'get',
+				url:'http://datainfo.duapp.com/shopdata/getGoods.php',
+				dataType:'jsonp',
+				data:{
+					classID:classId
+				},
+				success:function(data){
+					console.log(data);
+					$('#goodList').empty();
+					for(var i = 0 ; i < data.length ; i++){
+						if(i % 2 == 0){
+							$('#goodList').html($('#goodList').html()+`<li goodId=`+data[i].goodsID+`>
+							<img src="`+data[i].goodsListImg+`" alt=""/>
+							<p>`+data[i].goodsName.slice(0,5)+`...`+`</p>
+							<li>`);
+						}else{
+							$('#goodList').html($('#goodList').html()+`<li goodId=`+data[i].goodsID+` style="padding-left: 0.5rem;">
+							<img src="`+data[i].goodsListImg+`" alt=""/>
+							<p>`+data[i].goodsName.slice(0,5)+`...`+`</p>
+							<li>`);
+						}
+					}
+					$('#goodList>li').on('click',function(){
+					window.location.href = 'html/goodsInfo.html#'+this.getAttribute('goodId');
+					})
+				}
+			})
+	 	})
+	}
+</script>
+</html>

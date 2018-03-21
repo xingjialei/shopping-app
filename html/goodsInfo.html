@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>goodsInfo</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/goodsInfo.css"/>
+</head>
+<body>
+	<div data-role="page">
+<!--页面顶部-->
+		<div data-role="header" data-position="fixed" style="height: 3rem;background: linear-gradient(to right,yellow,#ffdf1b)!important;">
+			<a href="../index.html" rel="external" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+			<h1 style="line-height: 2rem;">商品详情</h1>
+			<a href="shopcart2.html" rel="external" class="icon ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" style="width: 2rem;height: 0.01rem;border-radius: 50%;"></a>
+		</div>
+<!--页面内容-->
+		<div data-role="content" id="content">
+			<div id="img1"></div>
+	<!--商品展示-->
+			<div id="first">
+				<div id="title"></div>
+				<div id="price"></div>
+				<div data-role="navbar">
+					<ul>
+						<li>快递：10.00元</li>
+						<li>月销<span id="buynumber"></span>笔</li>
+						<li>浙江杭州</li>
+					</ul>
+				</div>
+			</div>
+	<!--内容选择-->
+			<ul data-role="listview" id="second">
+				<li id="btn1">选择尺码,颜色分类</li>
+				<li id="btn2">产品参数</li>
+				<li id="btn3">购买颜色及数量</li>
+				<li><input type="number" id="number" placeholder="限购5件" min="1" max="5"></input></li>
+			</ul>
+			<div id="text"></div>
+	<!--用户评价-->
+			<div id="third">
+				<p style="text-align: center;">评价</p>
+				<ul data-role="listview" id="special">
+					<li>
+						<img src="../images/logo.jpg">
+						<h1>fdsf</h1>
+						<p>fsfdsfasf</p>
+					</li>
+					<li>
+						<img src="../images/logo.jpg">
+						<h1>fdsf</h1>
+						<p>fsfdsfasf</p>
+					</li>
+					<li>
+						<img src="../images/logo.jpg">
+						<h1>fdsf</h1>
+						<p>fsfdsfasf</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+<!--页面底部-->
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a id="update" style="background-color: orange;">加入购物车</a></li>
+					<li><a href="payment.html" rel="external" style="background-color: red;">立即购买</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+/*获取商品信息*/
+	var goodsId = window.location.hash.slice(1);
+	console.log(goodsId);
+	$.ajax({
+		type:'get',
+		url:'http://datainfo.duapp.com/shopdata/getGoods.php',
+		dataType:'jsonp',
+		data:{goodsID:goodsId},
+		success:function(data){
+			console.log(data);
+			$('#img1').html($('#img1').html()+`<img src="`+data[0].goodsListImg+`" alt=""/>`);
+			$('#title').html($('#title').html()+`<p>`+data[0].goodsName+`</p>`);
+			$('#price').html(`<p>￥`+data[0].price+`</p>`);
+			$('#buynumber').html($('#buynumber').html()+data[0].buynumber);
+			$('#btn2').click(function(){
+				$('#text').html($('#text').html()+`<span>`+data[0].detail+`</span>`);
+			});
+		}
+	})
+/*加入购物车*/
+	$('#update').click(function(){
+		var userId = localStorage.getItem('login');
+		var number = $('#number').val();
+		if(!userId){
+			window.location.href = 'login.html';
+		}
+		else if($('#number').val()){
+			$.ajax({
+				type:'get',
+				url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+				data:{
+					userID: userId,
+					goodsID: goodsId,
+					number: $('#number').val()
+				},
+				success:function(data){
+					if(data == 1){
+						alert('加入成功');
+					}
+					else if(data == 0){
+						alert('加入失败');
+					}
+				}
+			})
+		}
+		else{alert('请输入件数')}
+	})
+</script>
+</html>

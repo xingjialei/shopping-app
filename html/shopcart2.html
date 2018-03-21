@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>shpocart</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/shopcart.css"/>
+</head>
+<body>
+	<div data-role="page">
+	<!--页面顶部-->
+		<div data-role="header" data-position="fixed" style="background:linear-gradient(to right,yellow,#ffdf1b)!important;">
+			<h1>购物车</h1>
+		</div>
+	<!--页面内容-->
+		<div data-role="content">
+			<div data-role="fieldcontain" id="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<ul data-role="listview" id="listview">
+					</ul>
+				</fieldset>
+			</div>
+			<div id="popups">
+				<input type="button" id="delete" value="删除"></input>
+			</div>
+		</div>
+	<!--页面底部-->
+		<div data-role="footer" data-position="fixed">
+			<div id="first">
+				<input type="checkbox" id="checkall" style="margin-top: 0.3rem;"><span style="margin-left: 2.5rem;line-height: 2rem; margin-right: 5rem;">全选</span></input>
+				<span id="priceall1">合计：￥<span id="priceall">0</span></span>
+				<a href="#" data-role="button" class="ui-btn-right" style="width: 4rem;height: 2rem!important;line-height: 2rem;background-color: orange!important;margin-top: -0.3rem;margin-right: -0.3rem;">结算</a>
+			</div>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="../index.html" rel="external" data-iconpos="top" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon">首页</a></li>
+					<li><a href="informations.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">消息</a></li>
+					<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2 ui-btn-active" data-iconpos="top">购物车</a></li>
+					<li><a href="homepage.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon3" data-iconpos="top">我的主页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var install = localStorage.getItem('install');
+	var userId = localStorage.getItem('login');
+	var arr = [];
+	if(install){
+		if(userId){
+		/*获取购物车商品列表*/
+			$.ajax({
+				type:'get',
+				url:'http://datainfo.duapp.com/shopdata/getCar.php',
+				dataType:'jsonp',
+				data:{userID:userId},
+				success:function(data){
+					console.log(userId);
+					console.log(data);
+					var sum = 0;
+					for(var i = 0 ; i < data.length ; i++){
+						if(data[i].goodsName.length > 13){
+							$('#listview').html($('#listview').html()+'<li goods="'+data[i].goodsID+'" id="'+data[i].goodsID+'"><input type="checkbox" name="check" class="big"><a href="#"><div class="image"><img src="'+data[i].goodsListImg+'"></div><div class="text"><h1>'+data[i].goodsName.slice(0,10)+'...'+'</h1><p class="num1">购买数量：'+data[i].number+'</p><p class="price">'+data[i].price*data[i].number+'</p></div><div class="change"><input type="button" class="min" value="-" goodsid="'+data[i].goodsID+'" number2="'+data[i].number+'" price2="'+data[i].price+'"/><input type="text" class="num" value="'+data[i].number+'"/><input type="button" class="add" value="+" goodsid="'+data[i].goodsID+'" number2="'+data[i].number+'" price2="'+data[i].price+'"/><div class="delete" goodsId="'+data[i].goodsID+'"><img src="../images/delete.png"/></div></div></a></input></li>')
+						}
+						else{
+							$('#listview').html($('#listview').html()+'<li goods="'+data[i].goodsID+'" id="'+data[i].goodsID+'"><input type="checkbox" name="check" class="big"><a href="#"><div class="image"><img src="'+data[i].goodsListImg+'"></div><div class="text"><h1>'+data[i].goodsName+'</h1><p class="num1">购买数量：'+data[i].number+'</p><p class="price">'+data[i].price*data[i].number+'</p></div><div class="change"><input type="button" class="min" value="-" goodsid="'+data[i].goodsID+'" number2="'+data[i].number+'" price2="'+data[i].price+'"/><input type="text" class="num" value="'+data[i].number+'"/><input type="button" class="add" value="+" goodsid="'+data[i].goodsID+'" number2="'+data[i].number+'" price2="'+data[i].price+'"/><div class="delete" goodsId="'+data[i].goodsID+'"><img src="../images/delete.png"/></div></div></a></input></li>')
+						}
+		/*计算商品总额*/
+						$('.big').click(function(){
+							if(!$(this).attr('checked')){
+								$(this).attr('checked',true);
+								console.log($(this).attr('checked'));
+								$('#priceall').text(parseInt($('#priceall').text())+parseInt($(this).next().children(":first").next().children(":first").next().next().text()));
+							}
+							else{
+								$(this).removeAttr('checked',false);
+								$('#priceall').text(parseInt($('#priceall').text())-parseInt($(this).next().children(":first").next().children(":first").next().next().text()));
+							}
+							console.log($('#listview').children('li').length);
+							console.log($(this).parent().siblings());
+							$('#checkall').removeAttr('checked');
+						})
+					}
+		/*删除商品*/
+					$('.delete').click(function(){
+						var goodsid = this.getAttribute('goodsId');
+						console.log(goodsid);
+						$.ajax({
+							type:'get',
+							url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+							data:{
+								userID:userId,
+								goodsID:goodsid,
+								number:0
+							},
+							success:function(data){
+								if(data == 1){
+									$('#'+goodsid).remove();
+									alert('删除成功');
+								}
+								else if(data == 0){
+									alert('删除失败');
+								}
+							}
+						})
+					});
+		/*商品增减,价格增减*/
+					$('.add').click(function(){
+						var goodsId = this.getAttribute('goodsid');
+						var number2 = parseInt($(this).prev().val())+1;
+						var price2 = parseInt(this.getAttribute('price2'))*number2;
+						$(this).prev().val(number2);
+						$(this).parent().prev().children(":first").next().text("购买数量："+number2);
+						$(this).parent().prev().children(":first").next().next().text(price2);
+						console.log($(this).parent().prev().children(":first").next().next());
+						console.log(number2);;
+						if($(this).parent().parent().prev().attr('checked')){
+							var price3 = parseInt(this.getAttribute('price2'));
+							$('#priceall').text(parseInt($('#priceall').text())+price3);
+							console.log(price3);
+						}
+						$.ajax({
+							type:'get',
+							url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+							data:{
+								userID: userId,
+								goodsID: goodsId,
+								number: number2
+							},
+							success:function(data){
+								console.log(data);
+							}
+						});
+					});
+					$('.min').click(function(){
+						var goodsId = this.getAttribute('goodsid');
+						var number2 = parseInt($(this).next().val())-1;
+						var price2 = parseInt(this.getAttribute('price2'))*number2;
+						$(this).next().val(number2);
+						$(this).parent().prev().children(":first").next().text("购买数量："+number2);
+						$(this).parent().prev().children(":first").next().next().text(price2);
+						console.log(number2);
+						if($(this).parent().parent().prev().attr('checked')){
+							var price3 = parseInt(this.getAttribute('price2'));
+							$('#priceall').text(parseInt($('#priceall').text())-price3);
+							console.log(price3);
+						}
+						$.ajax({
+							type:'get',
+							url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+							data:{
+								userID: userId,
+								goodsID: goodsId,
+								number: number2
+							},
+							success:function(data){
+								console.log(data);
+							}
+						});
+					});
+		/*点击全选进行商品全选*/
+					$('#checkall').click(function(){
+						if(this.checked){
+							$(this).attr('checked',true);
+							$("input[name='check']").prop('checked',true);
+							$("input[name='check']").attr('checked',true);
+							console.log($('#listview').children().length);
+							for(var j = 0;j<$('#listview').children().length;j++){
+								sum = sum + parseInt($('#listview').find("li").eq(j).children(':first').next().children(":first").next().children(":first").next().next().text());
+								console.log(parseInt($('#listview').find("li").eq(j).children(':first').next().children(":first").next().children(":first").next().next().text()));
+							}
+							$('#priceall').text(sum);
+						}
+						else{
+							$("input[name='check']").removeAttr('checked',false);
+							$('#priceall').text(0);
+							sum = 0;
+						}
+					});
+				}
+			})
+		}
+		else window.location.href = 'login.html';
+	}
+	else window.location.href = 'animation.html';
+</script>
+</html>

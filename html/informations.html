@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<title>informations</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/informations.css"/>
+</head>
+<body>
+	<div data-role="page" id="page3">
+	<!--面板部分-->
+		<div data-role="panel" id="Mypanel">
+			<div id="head">
+				<p style="display: inline;">打卡</p>
+				<a href="#"><img src="../images/nav_3.png" style="width: 30px; float: right;" /></a>		
+			</div>
+			<div id="content">
+				<div id="panel_ch">
+					<img src="../images/first.jpg" style="width: 60px; display: inline;" />
+					<h1 id="userId"></h1>
+				</div>
+				<ul data-role="listview"  id="ull">
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>我的会员</h1>
+					</a></li>
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>钱包</h1>
+					</a></li>
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>个性装扮</h1>
+					</a></li>
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>我的收藏</h1>
+					</a></li>
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>我的相册</h1>
+					</a></li>
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>我的文件</h1>
+					</a></li>
+					<li data-icon="false" class="uo"><a href="#">
+						<h1>免流量特权</h1>
+					</a></li>
+				</ul>
+			</div>
+			<div id="footer">
+				<img src="../images/erweima.png" style="display: inline; width: 20px;"><a href="#" style="margin-right: 25px;">设置</a>
+				<img src="../images/erweima.png" style="display: inline;width: 20px;"><a href="#" style="margin-right: 25px;">夜间</a>
+				<img src="../images/erweima.png" style="display: inline; width: 20px;"><a href="#" style="">石家庄</a>
+			</div>
+		</div>
+	<!--主体部分-->
+		<div data-role="header" data-position="fixed" id="header" style="height: 2.7rem;">
+			<a href="#Mypanel" data-role="none"><img src="../images/nav_3.png" style="width: 2.2rem;border-radius: 50%;" /></a>
+			<h1>淘友消息</h1>
+			<a href="#" data-icon="plus" data-iconpos="notext">更多</a>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="搜索">
+				<li data-icon="false" class="ui"><a href="#">
+					<img src="../images/first.jpg" style="border-radius: 50%;" />
+					<h2>了了悸动</h2>
+					<p>我喜欢你 日月为礼江山为聘</p>
+					<span class="ui-li-count">2</span>
+				</a></li>
+				<li data-icon="false" class="ui"><a href="#">
+					<img src="../images/first.jpg"/>
+					<h2>泡芙</h2>
+					<p>我喜欢你 日月为礼江山为聘</p>
+				</a></li>
+				<li data-icon="false" class="ui"><a href="#">
+					<img src="../images/first.jpg"/>
+					<h2>来去皆江湖,</h2>
+					<p>我喜欢你 日月为礼江山为聘</p>
+				</a></li>
+				<li data-icon="false" class="ui"><a href="#">
+					<img src="../images/first.jpg"/>
+					<h2>再遇太难</h2>
+					<p>我喜欢你 日月为礼江山为聘</p>
+					<span class="ui-li-count">5</span>
+				</a></li>
+				<li data-icon="false" class="ui"><a href="#">
+					<img src="../images/first.jpg" style="border-radius: 50%;" />
+					<h2>炸了你一下.</h2>
+					<p>我喜欢你 日月为礼江山为聘</p>
+					<span class="ui-li-count">3</span>
+				</a></li>
+				<li data-icon="false" class="ui"><a href="#">
+					<img src="../images/first.jpg" style="border-radius: 50%;" />
+					<h2>闲身</h2>
+					<p>我喜欢你 日月为礼江山为聘</p>
+				</a></li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed" style="background-color: #ffc607;">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="../index.html" rel="external" data-iconpos="top" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon">首页</a></li>
+					<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1 ui-btn-active" data-iconpos="top">消息</a></li>
+					<li><a href="shopcart2.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">购物车</a></li>
+					<li><a href="homepage.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon3" data-iconpos="top">我的主页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var install = localStorage.getItem('install');
+	var userId = localStorage.getItem('login');
+	if(!install){
+		window.location.href = "animation.html";
+	}
+	else if(!userId){
+		window.location.href = 'login.html';
+	}
+	/*渲染用户信息*/
+	else{
+		$('#userId').text(localStorage.getItem('login'));
+	}
+</script>
+</html>

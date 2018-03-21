@@ -1,0 +1,24 @@
+.icon{
+	width: 1rem;
+	height: 1rem;
+	border-radius: 0.5rem;
+}
+.ui-icon-myicon1:after{
+	background-image: url("../images/nav_2.png");
+	background-size: 18px 18px;
+}
+img{
+	width: 5rem;
+	height: 5rem;
+	margin-left: 40%;
+	margin-top: 30%;
+}
+#page_1 .content a{
+	margin-top: 2rem;
+}
+#page_2,#page_1{
+	background: linear-gradient(to right,yellow,#fff001);
+}
+#page_2 .content input{
+	margin-top: 2rem;
+}

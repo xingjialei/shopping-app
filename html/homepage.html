@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>myhomepage</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../jquery.mobile-1.4.5/demos/css/themes/default/jquery.mobile-1.4.5.min.css"/>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/homepage.css"/>
+</head>
+<body>
+	<div data-role="page" id="page1">
+		<div id="header">
+			<div id="header_header">
+				<a href="#page2" style="text-decoration: none; color:black; margin-left: 1rem;">设置</a>
+				<a href="#"><img src="../images/nav_3.png" style="width: 2rem;" class="ui-btn-right"></a>
+			</div>
+			<div id="header_content">
+				<ul data-role="listview" id="userlist">
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div id="content_header">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">收藏夹</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">关注店铺</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">足迹</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="content_content">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">主会场</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">特别关注</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">戏精学院</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">视频直播</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="content_footer">
+				<ul data-role="listview">
+					<li><a href="#">我的订单</a></li>
+				</ul>
+				<div data-role="navbar">
+					<ul data-role="listview">
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">待付款</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">待发货</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">待收货</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">待评价</a></li>
+						<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">退款/售后</a></li>
+					</ul>
+				</div>
+				<div id="logistics_time">
+					<ul data-role="listview">
+						<li data-icon="false"><a href="#">
+							<p>最新物流</p>
+							<p>12-05</p>
+						</a></li>
+						<li data-icon="false"><a href="#">
+							<p>最新物流</p>
+							<p>12-05</p>
+						</a></li>
+					</ul>
+				</div>
+				<div id="logistics_site">
+					<ul data-role="listview">
+						<li data-icon="false"><a href="#">
+							<img src="../images/logo.jpg"/>
+							<h1>已签收</h1>
+							<p>您在您的收货地点已签收</p>
+						</a></li>
+						<li data-icon="false"><a href="#">
+							<img src="../images/logo.jpg"/>
+							<h1>未签收</h1>
+							<p>您的包裹已出仓库</p>
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="../index.html" rel="external" data-iconpos="top" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon">首页</a></li>
+					<li><a href="informations.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon1" data-iconpos="top">消息</a></li>
+					<li><a href="shopcart2.html" rel="external" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon2" data-iconpos="top">购物车</a></li>
+					<li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon3 ui-btn-active" data-iconpos="top">我的主页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="page" id="page2">
+		<div data-role="header" style="background: linear-gradient(to right,yellow,#ffdf1b)!important;">
+			<a href="#page1">←</a>
+			<h1>设置</h1>
+			<a href="#"><img src="../images/nav_3.png" style="width: 1rem;" /></a>
+		</div>
+		<div data-role="content">
+			<div style="width: 100%; height: 5rem;">
+				<ul data-role="listview" id="speciallist">		
+				</ul>
+			</div>
+			<ul data-role="listview" class="ui">
+				<li><a href="#">我的收货地址</a></li>
+				<li><a href="#">账户与安全</a></li>
+			</ul>
+			<ul data-role="listview" class="ui">
+				<li><a href="#">地区设置</a></li>
+				<li><a href="#">音效与通知</a></li>
+				<li><a href="#">隐私</a></li>
+				<li><a href="#">通用</a></li>
+			</ul>
+			<ul data-role="listview" class="ui">
+				<li><a href="#">我的小蜜</a></li>
+				<li><a href="#">关于app</a></li>
+			</ul>
+		</div>
+		<a data-role="button" id="exit">退出当前账户</a>
+	</div>
+</body>
+<script>
+	if(localStorage.getItem('login')){
+		console.log(localStorage.getItem('login'));
+	/*渲染用户信息*/
+		$.ajax({
+			type:'get',
+			url:'http://datainfo.duapp.com/shopdata/getuser.php',
+			dataType:'jsonp',
+			data:{
+				userID:localStorage.getItem('login')
+			},
+			success:function(data){
+				console.log(data);
+				$('#userlist').html(`<li><a href="#">
+						<img src="../images/first.jpg" alt=""/>
+						<h1>`+localStorage.getItem('login')+`</h1>
+					</a></li>`)
+			}
+		})
+	/*退出登录*/
+		$('#exit').click(function(){
+			localStorage.removeItem('login');
+			window.location.href = 'login.html';
+		})
+	/*渲染用户信息*/
+		$.ajax({
+			type:'get',
+			url:'http://datainfo.duapp.com/shopdata/getuser.php',
+			dataType:'jsonp',
+			data:{
+				userID:localStorage.getItem('login')
+			},
+			success:function(data){
+				console.log(data);
+				$('#speciallist').html(`<li><a href="#">
+						<img src="`+data[0].userimg_url+`" alt=""/>
+						<h1>`+localStorage.getItem('login')+`</h1>
+					</a></li>`)
+			}
+		})
+	}
+	else window.location.href = 'login.html';
+</script>
+</html>

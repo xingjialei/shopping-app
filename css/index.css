@@ -1,0 +1,74 @@
+.ui-icon-myicon:after {  
+   background-image: url("../images/nav_1.png");
+   background-size: 18px 18px;  
+}
+.ui-icon-myicon1:after{
+	background-image: url("../images/nav_2.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon2:after{
+	background-image: url("../images/nav_3.png");
+	background-size: 18px 18px;
+}
+.ui-icon-myicon3:after{
+	background-image: url("../images/nav_4.png");
+	background-size: 18px 18px;
+}
+.ui-icon{
+	width: 18px;
+	height: 18px;
+}
+ui-icon-all{
+	background-color:linear-gradient(#fbcb29,#ffb80e);
+}
+ul,li{
+	list-style: none;
+}
+.wrapper{
+	height: 3.3rem;
+	position: relative;
+}
+.wrapper .scroller{
+	position: absolute;
+}
+.wrapper li{
+	height: 2rem;
+	float: left;
+	line-height: 2rem;
+	padding: 0 3%;
+}
+.cur{
+	border-bottom:3px solid #ffe401;
+}
+
+.swiper-container{
+	width: 100%;
+	height: 8.5rem;
+}
+img{
+	width: 100%;
+	height: 100%;
+}
+#content{
+	margin: 0rem;
+	padding: 0rem;
+}
+#goodlist{
+	margin-top: 1rem;
+}
+#page1 #goodList li{
+	width: 47%;
+	list-style: none;
+	float: left;
+}
+#page1 li img{
+	width: 100%;
+	height: 9rem;
+}
+#page1 li p{
+	text-align: center;
+}
+#scroller{
+	width: 70rem;
+	 margin-left: -2rem;
+}
